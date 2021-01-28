@@ -11,6 +11,8 @@ import { HeroFeaturesComponent } from './hero-features/hero-features.component';
 import { HeroPricingComponent } from './hero-pricing/hero-pricing.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MessagesComponent } from './messages/messages.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { MessagesComponent } from './messages/messages.component';
     HeroFeaturesComponent,
     HeroPricingComponent,
     PageNotFoundComponent,
-    MessagesComponent
+    MessagesComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
