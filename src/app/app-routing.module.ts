@@ -5,6 +5,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './form/form.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HeroesComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'feature', component: HeroFeaturesComponent },
   { path: 'pricing', component: HeroPricingComponent },
   { path: 'form', component: FormComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component:  PageNotFoundComponent},
 ];
 
