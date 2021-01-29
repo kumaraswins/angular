@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../interface/login';
+import { LoginService } from '../login.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { Login } from '../interface/login';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api:LoginService, private router: Router) { }
   submitted = false;
   
   isShown : boolean = false;
@@ -20,7 +22,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() { 
     console.log(this.model)
-    this.model = {"name":"","password":""}
+    this.api.login(this.model)
+    .subscribe(data => {
+      console.log(data);
+      this.model = {"name":"","password":""}
+      this.router.navigateByUrl('/home');
+
+    })      
     this.isShown =true;
  }
 
