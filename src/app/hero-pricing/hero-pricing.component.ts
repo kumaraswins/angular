@@ -1,7 +1,6 @@
-import { Login } from './../interface/login';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service'
-import { UserList } from '../interface/login_list';
+import { UserList, NewUserList } from '../interface/login_list';
 
 @Component({
   selector: 'app-hero-pricing',
@@ -14,14 +13,17 @@ export class HeroPricingComponent implements OnInit {
 
   deviceData: UserList[] = [];
   selected = false;
+  newUser = false;
+  showForm = false;
 
-  model : UserList | undefined;
+  model : any | undefined;
 
   ngOnInit(): void {
     this.getData();
   }
 
   getData(){
+    this.deviceData =[];
     this.api.getList()
     .subscribe(data => {
       console.log(data.data)
@@ -34,8 +36,52 @@ export class HeroPricingComponent implements OnInit {
    */
   onSelect(user:UserList){
     this.selected = true;
-    this.model  = user;
+    this.model = Object.assign({}, user);
     console.log(user);
   }
+  /**
+   * 
+   * @param id 
+   */
+  onDelete(id:Number){
+
+    this.api.delete(id)
+    .subscribe(data => {
+      console.log(data)
+      this.getData();
+    })
+    
+  }
+  addNew(){
+    let user : any = {
+      'name' :"",
+      "password":"",
+      "uuid" :""
+    }
+    this.model =user;
+  }
+  createnew(){
+    console.log(this.model);
+
+    this.api.add(this.model)
+    .subscribe(data => {
+      console.log(data);
+      this.model = undefined;
+      this.getData();
+    })
+    
+  }
+
+  update(){
+    console.log(this.model);
+    this.api.update(this.model)
+    .subscribe(data => {
+      console.log(data);
+      this.model = undefined;
+      this.getData();
+    })
+    
+  }
+ 
 
 }

@@ -1,60 +1,113 @@
 <div class="container-fluid">
   <h3>Details</h3>
   <div class="row">
-    <div class ="col-4">
-    <table class="table table-hover table-light">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">UUID</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let data of deviceData">
-          <td >{{data.id}}</td>
-          <td >{{data.name}}</td>
-          <td>{{data.uuid}}</td>
-          <td>
-            <button type="button" class="btn btn-primary btn-sm" (click)="onSelect(data)">Edit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-4">
+      <table class="table table-hover table-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">UUID</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of deviceData; index as i">
+            <td>{{ i+1 }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.uuid }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary btn-sm mr-10"
+                (click)="onSelect(data);newUser=false"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="onDelete(data.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="buttons float-right">
+
+        <button type="button"
+          class="btn btn-success mr-15"
+          (click)="newUser=true;addNew()"
+          >Add
+        </button>
+     
+      </div>
     </div>
-    <div class="col-4" *ngIf="model">
-
-    <form #heroForm="ngForm">
-
+    <div class="col-4" *ngIf="model" >
+      <h3 *ngIf="newUser">New User</h3>
+      <h3 *ngIf="!newUser">Edit User  - {{model.name}}</h3>
+      <form #heroForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name"
-                 required
-                 [(ngModel)]="model.name" name="name"
-                 #name="ngModel">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="model.name"
+            name="name"
+            #name="ngModel"
+          />
         </div>
 
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name"
-                 required
-                 [(ngModel)]="model.name" name="name"
-                 #name="ngModel">
+          <label for="name">password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            required
+            [(ngModel)]="model.password"
+            name="password"
+            #name="ngModel"
+          />
         </div>
 
         <div class="form-group">
           <label for="uuid">UUID</label>
-          <input type="text" class="form-control" id="uuid"
-                 [(ngModel)]="model.uuid" name="uuid">
+          <input
+            type="text"
+            class="form-control"
+            id="uuid"
+            [(ngModel)]="model.uuid"
+            name="uuid"
+          />
         </div>
 
+        <div class="buttons float-right">
 
-
+          <button type="button"
+          
+            class="btn btn-success mr-15"
+            (click)="createnew()"
+            *ngIf="newUser"
+            >Save
+          </button>
+          <button type="button"
+            class="btn btn-warning mr-15"
+            (click)="update()"
+            *ngIf="!newUser"
+            >Update
+          </button>
+          <button type="button"
+            class="btn btn-secondary"
+            (click)="model=undefined" >Cancel
+          </button>
+        </div>
 
       </form>
-
-
     </div>
   </div>
 </div>
