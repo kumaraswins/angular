@@ -12,23 +12,36 @@ export class LoginComponent implements OnInit {
 
   constructor(private api:LoginService, private router: Router) { }
   submitted = false;
-  
   isShown : boolean = false;
-
   model = new Login('','');
+  inValidUser = false;
+  alert = "";
 
   ngOnInit(): void {
   }
 
-  onSubmit() { 
-    console.log(this.model)
-    this.api.login(this.model)
+  refresh(){
+    console.log(">>", localStorage.getItem("token"))
+    this.api.getList()
     .subscribe(data => {
       console.log(data);
-      this.model = {"name":"","password":""}
-      this.router.navigateByUrl('/home');
+    })
+  }
 
-    })      
+  onSubmit() {
+    this.api.login(this.model)
+    .subscribe(data => {
+      if(data['success']){
+        localStorage.setItem("token",data['data']['token'])
+        this.refresh();
+        this.router.navigateByUrl('/list');
+
+      } else {
+        this.alert = data['message'];
+        this.inValidUser = true;
+        this.model = {"name":"","password":""}
+      }
+    })
     this.isShown =true;
  }
 

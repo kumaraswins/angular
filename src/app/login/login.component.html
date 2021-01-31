@@ -1,8 +1,14 @@
 <div class="container">
     <div [hidden]="submitted">
       <h1>Hero Form</h1>
-      <h1  *ngIf="isShown" id="divshow" (click)="isShown=false">
-        Clicked</h1>
+
+
+        <div class="alert alert-warning"
+         *ngIf="inValidUser" id="divshow" (click)="inValidUser=false"
+         role="alert">
+          {{alert}}
+        </div>
+
       <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
@@ -15,7 +21,7 @@
             Name is required
           </div>
         </div>
-  
+
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" required id="password"

@@ -8,10 +8,10 @@ import { FormComponent } from './form/form.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HeroesComponent },
+  { path: '', component: LoginComponent },
   { path: 'home', component: HeroesComponent },
   { path: 'feature', component: HeroFeaturesComponent },
-  { path: 'pricing', component: HeroPricingComponent },
+  { path: 'list', component: HeroPricingComponent },
   { path: 'form', component: FormComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component:  PageNotFoundComponent},
