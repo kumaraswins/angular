@@ -18,7 +18,7 @@ constructor(private http: HttpClient, private helperService: HelpersService) { }
   }
 
   getList(): Observable<any> {
-    return this.http.get(environment.url + '/bot/list/', { headers: this.helperService.getAuthHeaders()})
+    return this.http.get(environment.url + '/bot/list/', { headers: this.helperService.getHeaders()})
   }
 
   login(login:Login):Observable<any> {
@@ -28,11 +28,11 @@ constructor(private http: HttpClient, private helperService: HelpersService) { }
 
   add(user:any):Observable<any> {
     const body=JSON.stringify(user);
-    return this.http.post(environment.url + '/bot/add', body, {'headers':this.helperService.getAuthHeaders()})
+    return this.http.post(environment.url + '/bot/add', body, {'headers':this.helperService.getHeaders()})
   }
 
   update(user:any):Observable<any> {
     const body=JSON.stringify(user);
-    return this.http.post(environment.url + '/bot/update', body, {'headers':this.helperService.getAuthHeaders()})
+    return this.http.post(environment.url + '/bot/update', body, {'headers':this.helperService.getHeaders()})
   }
 }

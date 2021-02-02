@@ -35,6 +35,7 @@ export class TokenInterceptor implements HttpInterceptor {
           }
         },
         (error) => {
+          debugger
           if (error.status == 401) {
             this.router.navigateByUrl('/');
           }
