@@ -32,4 +32,17 @@ export class HeroFeaturesComponent implements OnInit {
 
   }
 
+  isFieldValid(field: string) {
+    return !this.registerForm.get(field)?.valid && this.registerForm.get(field)?.touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
+
+  
+
 }

@@ -17,6 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token.interceptor';
 import {ReactiveFormsModule} from  '@angular/forms';
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
+import { HighlightDirective } from './highlight.directive';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import {ReactiveFormsModule} from  '@angular/forms';
     MessagesComponent,
     FormComponent,
     LoginComponent,
+    FieldErrorDisplayComponent,
+    HighlightDirective,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,140 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="registrationForm">
+        <div class="form-group">
+          <label for="email">Username</label>
+          <input
+            [class.is-invalid]="userName?.touched && userName?.invalid"
+            formControlName="userName"
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+
+          <div *ngIf="userName?.touched && userName?.invalid">
+            <small
+              *ngIf="userName?.errors?.required"
+              class="form-text text-muted text-danger"
+              >Required.</small
+            >
+            <small
+              *ngIf="userName?.errors?.minlength"
+              class="form-text text-muted text-danger"
+              >Minimum Length 3.</small
+            >
+            <small
+              *ngIf="userName?.errors?.forbiddenName"
+              class="form-text text-muted text-danger"
+              >{{ userName?.errors?.forbiddenName.value }} not allowed.</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Email</label>
+          <input
+          [class.is-invalid] = "email?.invalid && email?.touched"
+            formControlName="email"
+            type="text"
+            class="form-control"
+          />
+          <div *ngIf="email?.touched && email?.invalid ">
+            <small
+              *ngIf="email?.errors?.required"
+              class="form-text text-muted text-danger"
+              >Required.</small
+            >
+            <small
+              *ngIf="email?.errors?.invalid"
+              class="form-text text-muted text-danger"
+              >Not valid email.</small
+            >
+          </div>
+          
+        </div>
+
+        <div class="form-check">
+          <input formControlName="subscribe" type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label  class="form-check-label" for="exampleCheck1">Subscribe</label>
+        </div>
+
+        
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmpassword">Confirm Password</label>
+          <input
+            [class.is-invalid]="
+              confirmPassword?.touched && registrationForm?.errors?.misMatch
+            "
+            formControlName="confirmPassword"
+            type="password"
+            class="form-control"
+          />
+          <small
+            *ngIf="
+              confirmPassword?.touched && registrationForm?.errors?.misMatch
+            "
+            class="text-danger"
+            >Password doesnt match</small
+          >
+        </div>
+
+        <div class="address" formGroupName="address">
+          <div class="form-group">
+            <label for="password">City</label>
+            <input
+              formControlName="city"
+              type="text"
+              class="form-control"
+              placeholder="city"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>State</label>
+            <input
+              formControlName="state"
+              type="text"
+              class="form-control"
+              placeholder="state"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Postal Code</label>
+            <input
+              formControlName="code"
+              type="text"
+              class="form-control"
+              placeholder="code"
+            />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button
+          (click)="loadData()"
+          class="btn btn-secondary ml-2"
+          type="button"
+        >
+          Load Data
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
