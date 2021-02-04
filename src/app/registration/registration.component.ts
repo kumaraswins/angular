@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.registrationForm = this._fb.group({
       userName : ['',[Validators.required, Validators.minLength(3), forbiddenNameValidator]],
-      email :[''],
+      email :['',Validators.email],
       password : [''],
       confirmPassword : [''],
       subscribe :false,
@@ -36,6 +36,7 @@ export class RegistrationComponent implements OnInit {
         valueChanges.subscribe(checkedValue =>{
           const email = this.registrationForm?.get('email');
           if(checkedValue){
+            email?.clearValidators()
             email?.setValidators([Validators.required,Validators.email])
           } else{
             email?.clearValidators()
@@ -57,7 +58,7 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm?.get('email');
   }
   loadData(){
-    this.registrationForm?.setValue({
+    this.registrationForm?.patchValue({
       userName : 'Bruce',
       password : "test",
       confirmPassword : 'test',

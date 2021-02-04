@@ -20,6 +20,7 @@ import {ReactiveFormsModule} from  '@angular/forms';
 import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 import { HighlightDirective } from './highlight.directive';
 import { RegistrationComponent } from './registration/registration.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { RegistrationComponent } from './registration/registration.component';
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,

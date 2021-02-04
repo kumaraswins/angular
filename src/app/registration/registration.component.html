@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
+      {{registrationForm.value | json}}
       <form [formGroup]="registrationForm">
         <div class="form-group">
           <label for="email">Username</label>
