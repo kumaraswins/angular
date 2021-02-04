@@ -21,6 +21,16 @@ import { FieldErrorDisplayComponent } from './field-error-display/field-error-di
 import { HighlightDirective } from './highlight.directive';
 import { RegistrationComponent } from './registration/registration.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -44,7 +54,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule
   ],
   providers: [
     {
@@ -52,6 +66,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       useClass: TokenInterceptor,
       multi: true,
     },
+    { provide: NZ_I18N, useValue: en_US },
   ],
   bootstrap: [AppComponent],
 })

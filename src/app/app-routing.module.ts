@@ -1,16 +1,16 @@
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HeroPricingComponent } from './hero-pricing/hero-pricing.component';
-import { HeroFeaturesComponent } from './hero-features/hero-features.component';
-import { HeroesComponent } from './heroes/heroes.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { FormComponent } from './form/form.component';
+import { HeroFeaturesComponent } from './hero-features/hero-features.component';
+import { HeroPricingComponent } from './hero-pricing/hero-pricing.component';
+import { HeroesComponent } from './heroes/heroes.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationComponent } from './registration/registration.component';
 
-
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
+  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
   { path: 'home', component: HeroesComponent },
   { path: 'feature', component: HeroFeaturesComponent },
   { path: 'list', component: HeroPricingComponent },
