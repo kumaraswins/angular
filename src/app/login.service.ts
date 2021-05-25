@@ -13,7 +13,7 @@ export class LoginService {
 constructor(private http: HttpClient, private helperService: HelpersService) { }
 
   delete(id:Number): Observable<any> {
-    const body=JSON.stringify({"id":id});
+    const body={"id":id};
     return this.http.post(environment.url + '/bot/delete/',body, { headers: this.helperService.getAuthHeaders()})
   }
 
@@ -22,17 +22,19 @@ constructor(private http: HttpClient, private helperService: HelpersService) { }
   }
 
   login(login:Login):Observable<any> {
-    const body=JSON.stringify(login);
-    return this.http.post(environment.url + '/bot/login', body, {'headers':this.helperService.getHeaders()})
+    // const body= login//JSON.stringify(login);
+    // console.log(body)
+    return this.http.post(environment.url + '/bot/login/', login, {'headers':this.helperService.getHeaders()})
   }
 
   add(user:any):Observable<any> {
     const body=JSON.stringify(user);
-    return this.http.post(environment.url + '/bot/add', body, {'headers':this.helperService.getHeaders()})
+    return this.http.post(environment.url + '/bot/add', user, {'headers':this.helperService.getHeaders()})
   }
 
   update(user:any):Observable<any> {
     const body=JSON.stringify(user);
-    return this.http.post(environment.url + '/bot/update', body, {'headers':this.helperService.getHeaders()})
+    return this.http.post(environment.url + '/bot/update', user, {'headers':this.helperService.getHeaders()})
   }
+
 }

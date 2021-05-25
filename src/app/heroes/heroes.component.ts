@@ -14,7 +14,7 @@ export class HeroesComponent implements OnInit {
 
   selectedHero: Hero | undefined;
   heroes: Hero[] | undefined;
-  
+
 
   constructor(private heroService: HeroService, private messageService: MessageService) { }
 

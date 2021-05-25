@@ -37,6 +37,7 @@ export class TokenInterceptor implements HttpInterceptor {
         (error) => {
           if (error.status == 401) {
             this.router.navigateByUrl('/');
+            //console.log("Token invalid - uncomment to redirection")
           }
         }
       )

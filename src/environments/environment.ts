@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  url : "http://localhost:3000"
+  production: true,
+  url : "http://localhost:3000",
+  //cowin : "https://cdn-api.co-vin.in/api/v2",
+  cowin : "https://api.demo.co-vin.in/api/v2"
 };
 
 

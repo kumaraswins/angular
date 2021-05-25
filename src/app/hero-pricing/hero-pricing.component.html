@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <h3>Details</h3>
   <div class="row">
-    <div class="col-4">
-      <table class="table table-hover table-light">
+    <div class="col-8">
+      <!-- {% comment %} <table class="table table-hover table-light">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -34,15 +34,45 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> {% endcomment %} -->
+      <nz-table #basicTable [nzData]="deviceData">
+          <thead>
+            <tr>
+               <th scope="col"></th>
+               <th scope="col">#</th>
+
+                <th scope="col">Name</th>
+                <!-- <th scope="col">UUID</th> -->
+                <th scope="col">Actions</th>
+                <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of deviceData; index as i">
+
+              <td
+            [nzChecked]="setOfCheckedId.has(data.id)"
+
+            (nzCheckedChange)="onItemChecked(data); data.disbaled=!data.disbaled"
+          ></td>
+          <td>{{i+1}}</td>
+              <td>{{data.name}}</td>
+              <!-- <td>{{data.uuid}}</td> -->
+              <td>
+                <button nz-button nzType="primary" (click)="onSelect(data);newUser=false"  [disabled]="!data.disbaled">
+                  Edit 一 {{data.name}}
+                  </button>
+
+                <!-- <nz-divider nzType="vertical"></nz-divider> -->
+                <button nz-button nzType="text" nzDanger (click)="onDelete(data.id)"  [disabled]="!data.disbaled">
+                  Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
       <div class="buttons float-right">
 
-        <button type="button"
-          class="btn btn-success mr-15"
-          (click)="newUser=true;addNew()"
-          >Add
-        </button>
-     
+        <button nz-button  nzType="primary" (click)="newUser=true;addNew()">Add</button>
       </div>
     </div>
     <div class="col-4" *ngIf="model" >
@@ -88,23 +118,20 @@
 
         <div class="buttons float-right">
 
-          <button type="button"
-          
-            class="btn btn-success mr-15"
+          <button nz-button
+           nzType="primary"
             (click)="createnew()"
-            *ngIf="newUser"
-            >Save
+            *ngIf="newUser">Save</button>
+
+            <button nz-button
+           nzType="primary"
+           (click)="update()"
+           *ngIf="!newUser"
+           >Update
           </button>
-          <button type="button"
-            class="btn btn-warning mr-15"
-            (click)="update()"
-            *ngIf="!newUser"
-            >Update
-          </button>
-          <button type="button"
-            class="btn btn-secondary"
-            (click)="model=undefined" >Cancel
-          </button>
+
+          <button nz-button nzType="dashed" nzDanger (click)="model=undefined" >Cancel</button>
+
         </div>
 
       </form>

@@ -11,20 +11,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HeroService {
 
   private heroesUrl = 'api/heroes';
-  
-  constructor(  private http: HttpClient, 
+
+  constructor(  private http: HttpClient,
     private messageService: MessageService) { }
 
     getHeroes(): Observable<Hero[]> {
       this.messageService.add('HeroService: fetched heroes');
       return of(HEROES);
     }
-  
+
     getData(): Observable<Hero[]> {
       return this.http.get<Hero[]>(this.heroesUrl)
     }
 
-  
+
     private log(message: string) {
       this.messageService.add(`HeroService: ${message}`);
     }

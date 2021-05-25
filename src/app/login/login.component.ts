@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Login } from '../interface/login';
 import { LoginService } from '../login.service'
 import { Router } from '@angular/router'
+import {HelpersService} from  "../helpers.service";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private api:LoginService, private router: Router) { }
+  constructor(private api:LoginService, private router: Router, private hs:HelpersService) { }
   submitted = false;
   isShown : boolean = false;
   model = new Login('','');
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   alert = "";
 
   ngOnInit(): void {
+    console.log(this.hs.getMMDDYYYY())
   }
 
   refresh(){

@@ -4,20 +4,24 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group col-md-12">
-                    <h2> Angular Sidebar Template</h2>
-                    <hr>
-                    <p>This is a responsive sidebar template with dropdown menu built with angular 7 and bootstrap 4.</p>
-                    <hr>
-                    <a href="#" class="btn btn-outline-secondary mr-1 mb-1" >Toggle Sidebar</a>
-                    <a href="#" class="btn btn-secondary" >Toggle Background Image</a>
+                <h3>Covid-19 automatic vaccine bookings and availability tracking in India</h3>
+                <h5>This web-app can continously track for availability of vaccine and proceed with booking on your behalf if you are logged in.</h5>
+                <p>Please register on <a href="https://www.cowin.gov.in/home" target="_blank">COWIN</a>, add beneficiaries and then, come back here for automated bookings.</p>
                 </div>
             </div>
-            <div class="attribution text-center badge badge-warning">
+            <div class="row">
+            <form >
+              <div class="form-group col-md-12">
+                <label for="name">Phone Numner</label>
+                <input type="number" class="form-control" id="name" required>
               </div>
+
+              </form>
+              <button (click)="onSubmit()"class="btn btn-success" >Submit</button>
+            </div>
         </div>
-        <div class="overlay"></div>
+
     </main>
-  
+
     <!-- <a href="https://github.com/azouaoui-med/angular-pro-sidebar"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a> -->
   </div>
-  

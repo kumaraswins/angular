@@ -9,6 +9,11 @@ import { UserList, NewUserList } from '../interface/login_list';
 })
 export class HeroPricingComponent implements OnInit {
 
+  checked = false;
+  loading = false;
+  indeterminate = false;
+  setOfCheckedId = new Set<number>();
+
   constructor(private api:LoginService) { }
 
   deviceData: UserList[] = [];
@@ -26,8 +31,15 @@ export class HeroPricingComponent implements OnInit {
     this.deviceData =[];
     this.api.getList()
     .subscribe(data => {
-      console.log(data.data)
-      this.deviceData = data['data'];
+      let response = data['data'];
+
+      for(let i=0;i<response.length;i++){
+        response[i]['disabled'] = false
+      }
+
+      console.log(response)
+      this.deviceData = response;
+
     })
   }
   /**
@@ -40,8 +52,8 @@ export class HeroPricingComponent implements OnInit {
     console.log(user);
   }
   /**
-   * 
-   * @param id 
+   *
+   * @param id
    */
   onDelete(id:Number){
 
@@ -50,7 +62,7 @@ export class HeroPricingComponent implements OnInit {
       console.log(data)
       this.getData();
     })
-    
+
   }
   addNew(){
     let user : any = {
@@ -69,7 +81,7 @@ export class HeroPricingComponent implements OnInit {
       this.model = undefined;
       this.getData();
     })
-    
+
   }
 
   update(){
@@ -80,8 +92,12 @@ export class HeroPricingComponent implements OnInit {
       this.model = undefined;
       this.getData();
     })
-    
+
   }
- 
+
+  onItemChecked(id: object): void {
+
+  }
+
 
 }

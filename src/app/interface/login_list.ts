@@ -5,6 +5,7 @@ export interface UserList {
     password:string;
     createdAt:string;
     updatedAt:string;
+    disbaled: boolean;
 
 }
 export interface NewUserList {

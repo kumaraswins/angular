@@ -1,4 +1,8 @@
+import { CowinService } from './../../cowin.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+import {HelpersService} from  "../../helpers.service";
+
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router, private hs:HelpersService, private api:CowinService) { }
 
   ngOnInit() {
   }
+
+  // onSubmit(){
+  //   console.log(">>>>>>>>>>>>>")
+
+  // }
+
+  onSubmit() {
+    this.api.getDistrictData()
+    .subscribe(data => {
+      console.log(data)
+    })
+
+ }
 
 }
